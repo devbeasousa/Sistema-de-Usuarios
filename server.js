@@ -70,7 +70,7 @@ app.patch("/usuario/:id",(req,res)=>{
     const {id} = req.params
     const indice = id - 1 
     if (id > usuarios.length){
-        res.send(erro_mensagem[0])
+        res.status(400).send(erro_mensagem[0])
     }else{
         if (id == usuarios[indice].id){
             if ("nomeCompleto" in edit_usuario && "username" in edit_usuario && "email" in edit_usuario){
