@@ -49,8 +49,8 @@ app.get("/usuario/:id",(req,res)=>{
 app.post("/usuario",(req,res)=>{
     novo_usuario = req.body
     indice = (usuarios.length) - 1
-    const ultimoid = usuarios[indice]? usuarios[indice].id : 0
-    novo_usuario["id"] = (usuarios[indice].id) + 1
+    const ultimoId = usuarios[indice]? (usuarios[indice].id) : 0
+    novo_usuario["id"] = (ultimoId) + 1
     
     if ("nomeCompleto" in novo_usuario && "username" in novo_usuario && "email" in novo_usuario){
         if ("nomeSocial" in novo_usuario){
