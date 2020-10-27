@@ -4,37 +4,7 @@ const app = express()
 app.use(express.json())
 
 // Array Usuarios
-var usuarios = [ { 
-
-            "id": 1, 
-
-             "nomeCompleto":"Gabriel Espindola", 
-
-            "nomeSocial":"Gabriel", 
-
-            "username":"gabriel.espindola", 
-
-            "senha":"123456", 
-
-            "email":"gabriel.espindola@ligaeducacional.com.br" 
-
-        }, 
-
-        { 
-
-            "id": 2, 
-
-             "nomeCompleto":" Beatriz ", 
-
-            "nomeSocial":" Beatriz ", 
-
-            "username":"bia", 
-
-            "senha":"bia123", 
-
-            "email":"bia@ligaeducacional.com.br" 
-
-        } ]
+var usuarios = []
 
 //Mensagem de erro
 erro_mensagem = [{ 
