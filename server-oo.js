@@ -3,12 +3,8 @@ const express = require("express")
 const app = express()
 app.use(express.json())
 
-//Iniciando OO com a classe de serviço de usuario
+//Classe de serviço de usuario
 
-/**
- * classe responsável pela manipulação de usuarios
- * é através dela que vamos fazer as operações de validação, inclusão, alteração e exclusão
- */
 class UsuarioService{
     usuarios = []
 
@@ -45,7 +41,7 @@ class UsuarioService{
     }
 }
 
-//classe Responsável pelo Modelo de usuários
+//Classe de modelo de usuários
 class Usuario{
 
     id = null
