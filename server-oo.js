@@ -3,7 +3,7 @@ const express = require("express")
 const app = express()
 app.use(express.json())
 
-//Classe de Serviço de Usuario
+//Iniciando OO com a classe de serviço de usuario
 
 /**
  * classe responsável pela manipulação de usuarios
@@ -45,7 +45,7 @@ class UsuarioService{
     }
 }
 
-//Classe Responsável pelo Modelo de usuários
+//classe Responsável pelo Modelo de usuários
 class Usuario{
 
     id = null
@@ -168,16 +168,6 @@ app.delete("/usuario/:id",(req,res)=>{
         res.status(400).send(erro_mensagem['erro.usuario.naoencontrado'])
         return
     }
-
-    usuariosService.removerUsuario(indice)
-    res.status(200).send(erro_mensagem['usuario.excluido.sucesso'])
-})
-
-//Outros
-const port = 3000
-app.listen(port, ()=>{
-    console.log(`Iniciando servidor...`)
-})
 
     usuariosService.removerUsuario(indice)
     res.status(200).send(erro_mensagem['usuario.excluido.sucesso'])
