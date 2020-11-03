@@ -3,11 +3,7 @@ const express = require("express")
 const app = express()
 app.use(express.json())
 
-
-// Array Usuarios
-
-
-//Iniciando OO com a classe de serviço de usuario
+//Classe de Serviço de Usuario
 
 /**
  * classe responsável pela manipulação de usuarios
@@ -36,16 +32,20 @@ class UsuarioService{
     }
 
     removerUsuario(indice){
-        this.usuarios.splice(indice+1,1)
+        this.usuarios.splice(indice,1)
         this.reordenarUsuarios()
     }
 
     reordenarUsuarios(){
-        const usuarios = this.usuarios.map( (usuario, index) => ({...usuario, id: index+1}))
+        var i = 0
+        while(i < this.usuarios.length){
+            this.usuarios[i]["id"] = (i+1)
+            i++
+        }
     }
 }
 
-//classe Responsável pelo Modelo de usuários
+//Classe Responsável pelo Modelo de usuários
 class Usuario{
 
     id = null
@@ -138,18 +138,15 @@ app.post("/usuario",(req,res)=>{
 app.patch("/usuario/:id",(req,res)=>{
     edit_usuario = req.body
     const {id} = req.params
-    if (!id){
-        res.status(400).send(erro_mensagem['erro.id.naoinformada'])
-        return
-    }
-
+    var indice = id - 1
+    
     const usuario = usuariosService.buscarUsuario(id)
     if (!usuario){
         res.status(400).send(erro_mensagem['erro.id.naoinformada'])
         return
     }
     
-    usuario.id = id
+    usuario.id = indice + 1
     usuario.nomeCompleto = edit_usuario.nomeCompleto || null
     usuario.username = edit_usuario.username || null
     usuario.email = edit_usuario.email || null
@@ -158,24 +155,31 @@ app.patch("/usuario/:id",(req,res)=>{
         return
     }
 
-    usuariosService.alterarUsuario(id, usuario)
+    usuariosService.alterarUsuario(indice, usuario)
     res.status(200).send(usuariosService.usuarios[indice])
 })
 
 app.delete("/usuario/:id",(req,res)=>{
     const {id} = req.params
-    if (!id){
-        res.status(400).send(erro_mensagem['erro.id.naoinformada'])
-        return
-    }
-
+    var indice = id - 1
+    
     const usuario = usuariosService.buscarUsuario(id)
     if (!usuario){
         res.status(400).send(erro_mensagem['erro.usuario.naoencontrado'])
         return
     }
 
-    usuariosService.removerUsuario(id)
+    usuariosService.removerUsuario(indice)
+    res.status(200).send(erro_mensagem['usuario.excluido.sucesso'])
+})
+
+//Outros
+const port = 3000
+app.listen(port, ()=>{
+    console.log(`Iniciando servidor...`)
+})
+
+    usuariosService.removerUsuario(indice)
     res.status(200).send(erro_mensagem['usuario.excluido.sucesso'])
 })
 
