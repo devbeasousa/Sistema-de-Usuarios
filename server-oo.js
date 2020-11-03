@@ -4,7 +4,6 @@ const app = express()
 app.use(express.json())
 
 //Classe de serviço de usuario
-
 class UsuarioService{
     usuarios = []
 
@@ -66,10 +65,10 @@ const usuariosService = new UsuarioService()
 
 const primeiroUsuario = new Usuario(1, "Gabriel", "gabriel", "123456", "gabriel.espindola@ligaeducacional.com.br")
 
-//adicionando o usuário através de uma variável
+//Adicionando o usuário através de uma variável
 usuariosService.inserirUsuario(primeiroUsuario)
 
-//adicionando o usuário diretamente utilizando o construtor como parâmetro
+//Adicionando o usuário diretamente utilizando o construtor como parâmetro
 usuariosService.inserirUsuario(new Usuario(2, "Yasmim", "Yasmim", "123456", "yasmim@ligaeducacional.com.br"))
 
 //Mensagem de erro
